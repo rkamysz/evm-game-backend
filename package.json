@@ -22,10 +22,9 @@
   "homepage": "https://github.com/rkamysz/evm-game-backend#readme",
   "dependencies": {
     "@soapjs/soap": "^0.1.2",
-    "@soapjs/soap-express": "^0.0.2",
+    "@soapjs/soap-express": "^0.0.5",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.12",
-    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ethers": "^6.12.1",
     "express": "^4.19.2",
