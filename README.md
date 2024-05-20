@@ -46,7 +46,10 @@ The deploy.js script in the hardhat-project/scripts directory deploys the Leader
 The backend initializes the contract by receiving the ABI and contract address via WebSocket. This is done in the initializeContract function.
 
 ## Available API Endpoints
-### POST /api/players
+
+Please use `postman-collection.json`
+
+### POST /v1/players
 Adds a new player to the leaderboard.
   - Request Body:
       ```json
@@ -56,6 +59,6 @@ Adds a new player to the leaderboard.
       }
       ```
   - Response: `Result<boolean>`
-### GET /api/players
+### GET /v1/players
 Retrieves the list of all players on the leaderboard.
   - Response: `Result<Player[]>`
