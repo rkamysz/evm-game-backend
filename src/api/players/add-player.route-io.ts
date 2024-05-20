@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { HttpError, Result, RouteIO } from "@soapjs/soap";
-import { Player } from "../../features";
+import { Player } from "../../features/players/domain/player";
 import { ethers } from "ethers";
 
-type AddPlayerModel = {
+export type AddPlayerModel = {
   playerAddress: string;
   score: number;
 };

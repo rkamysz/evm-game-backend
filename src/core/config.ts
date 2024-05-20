@@ -4,7 +4,6 @@ export type Web3Config = {
   network: string;
   infuraProjectId: string;
   walletPrivateKey: string;
-  contractAddress: string;
 };
 
 export class Config implements Soap.Config {
@@ -14,13 +13,11 @@ export class Config implements Soap.Config {
     const walletPrivateKey = vars.getStringEnv("PRIVATE_KEY");
     const network = vars.getStringEnv("NETWORK");
     const infuraProjectId = vars.getStringEnv("INFURA_PROJECT_ID");
-    const contractAddress = vars.getStringEnv("CONTRACT_ADDRESS");
 
     return new Config(port, {
       network,
       infuraProjectId,
       walletPrivateKey,
-      contractAddress,
     });
   }
 
