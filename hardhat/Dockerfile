@@ -1,19 +1,10 @@
-FROM node:16
+FROM node:18
 
-# Set the working directory
 WORKDIR /app
 
-# Install Hardhat globally
-RUN npm install -g hardhat
+COPY package*.json ./
+RUN npm install
 
-# Copy only the necessary files
-COPY contracts ./contracts
-COPY scripts ./scripts
-COPY hardhat.config.js ./
-COPY ../.env .env
+COPY . .
 
-# Install Hardhat dependencies
-RUN npm install @nomiclabs/hardhat-waffle @nomiclabs/hardhat-ethers ethers dotenv
-
-# Command to run Hardhat
-CMD ["npx", "hardhat", "run", "scripts/deploy.js", "--network", "rinkeby"]
+CMD ["npm", "run", "deploy"]

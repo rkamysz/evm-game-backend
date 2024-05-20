@@ -1,27 +1,29 @@
-version: '3.8'
+version: "3.8"
 
 services:
   hardhat:
     build: ./hardhat
     environment:
-      INFURA_PROJECT_ID: ${INFURA_PROJECT_ID}
-      PRIVATE_KEY: ${PRIVATE_KEY}
+      - INFURA_PROJECT_ID=${INFURA_PROJECT_ID}
+      - PRIVATE_KEY=${PRIVATE_KEY}
+      - NETWORK=${NETWORK}
     volumes:
       - ./hardhat:/app
     depends_on:
       - backend
     command: >
-      /bin/sh -c "sleep 10 && npx hardhat run scripts/deploy.js --network rinkeby"
+      /bin/sh -c "sleep 10 && npm install && npm run deploy"
 
   backend:
-    build: .
+    image: node:16
     environment:
       - INFURA_PROJECT_ID=${INFURA_PROJECT_ID}
       - PRIVATE_KEY=${PRIVATE_KEY}
-      - CONTRACT_ADDRESS=${CONTRACT_ADDRESS}
       - PORT=${PORT}
+      - NETWORK=${NETWORK}
     ports:
-      - "3000:3000"
+      - "${PORT}:${PORT}"
     volumes:
       - .:/app
-    command: npm start
+    working_dir: /app
+    command: sh -c "npm install && npm run build && npm run start"
