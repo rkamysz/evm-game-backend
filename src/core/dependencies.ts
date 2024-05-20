@@ -30,7 +30,6 @@ export class Dependencies implements Soap.Dependencies<Container> {
    */
   async configure(): Promise<void> {
     const contract = await initializeContract<LeaderboardContract>(this.config);
-
     this.container
       .bind<PlayerRepository>(PlayerRepository.Token)
       .toConstantValue(

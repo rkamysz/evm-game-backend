@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { Result, RouteIO } from "@soapjs/soap";
+import { HttpError, Result, RouteIO } from "@soapjs/soap";
 import { Player } from "../../features";
+import { ethers } from "ethers";
 
 type AddPlayerModel = {
   playerAddress: string;
@@ -22,6 +23,10 @@ export class AddPlayerRouteIO
     const {
       body: { playerAddress, score },
     } = request;
+
+    if (ethers.isAddress(playerAddress) === false) {
+      throw new HttpError(400, "Wrong ETH address");
+    }
 
     return new Player(playerAddress, score);
   }
