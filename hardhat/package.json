@@ -1,19 +1,21 @@
 {
   "name": "hardhat",
   "version": "1.0.0",
-  "description": "A project to deploy and interact with smart contracts using Hardhat.",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "npx hardhat run scripts/deploy.js",
-    "main": "npx hardhat run scripts/main.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ignition": "^0.15.4",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "dotenv": "^16.4.5",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.22.4"
   },
   "dependencies": {
-    "ethers": "^5.4.0",
-    "ws": "^7.4.0",
-    "hardhat": "^2.6.0",
-    "@nomiclabs/hardhat-waffle": "^2.0.0",
-    "@nomiclabs/hardhat-ethers": "^2.0.0",
-    "chai": "^4.3.4",
-    "dotenv": "^16.4.5"
+    "express": "^4.19.2"
   }
 }

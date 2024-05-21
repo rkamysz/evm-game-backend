@@ -1,13 +1,14 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/app/contracts/leaderboard.sol": {
-      "lastModificationDate": 1716208023841,
-      "contentHash": "9c024d34f4e853d9358451b15acd13ec",
-      "sourceName": "contracts/leaderboard.sol",
+    "/Users/rad/git/evm-game-backend/hardhat/contracts/Leaderboard.sol": {
+      "lastModificationDate": 1716313740615,
+      "contentHash": "3eab5af9ec31bb676f19560c5e8d4b6a",
+      "sourceName": "contracts/Leaderboard.sol",
       "solcConfig": {
-        "version": "0.8.0",
+        "version": "0.8.24",
         "settings": {
+          "evmVersion": "paris",
           "optimizer": {
             "enabled": false,
             "runs": 200
@@ -30,7 +31,7 @@
       },
       "imports": [],
       "versionPragmas": [
-        "^0.8.0"
+        "^0.8.24"
       ],
       "artifacts": [
         "Leaderboard"

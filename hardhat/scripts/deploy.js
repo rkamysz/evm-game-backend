@@ -1,36 +1,31 @@
-const { ethers, network } = require('hardhat');
 const fs = require('fs');
 const path = require('path');
 
-const deploy = async (contractName) => {
-  const contractLC = contractName.toLowerCase();
+async function main() {
   const [deployer] = await ethers.getSigners();
+  console.log("Deploying contracts with the account:", deployer.address);
 
-  console.log('Deploying contracts with the account:', deployer.address);
+  const Leaderboard = await ethers.getContractFactory("Leaderboard");
+  const leaderboard = await Leaderboard.deploy();
+  await leaderboard.deployed();
+  console.log("Leaderboard deployed to:", leaderboard.address);
 
-  const Contract = await ethers.getContractFactory(contractName);
-  const contract = await Contract.deploy();
-
-  await contract.deployed();
-
-  const abiPath = path.join(__dirname, `../artifacts/contracts/${contractLC}.sol/${contractName}.json`);
-  const abiFile = fs.readFileSync(abiPath, 'utf8');
-  const abi = JSON.parse(abiFile).abi;
-
-  console.log(`${contractName} contract deployed to:`, contract.address);
-  // test
-  try {
-    const players = await contract.getPlayers();
-    console.log('Players from getPlayers():', players);
-  } catch (error) {
-    console.error('Error calling getPlayers() directly:', error);
-  }
-
-  return {
-    abi,
-    address: contract.address
+  const data = {
+    Leaderboard: {
+      address: leaderboard.address,
+      abi: JSON.parse(leaderboard.interface.format('json'))
+    }
   };
-  
+
+  const dataPath = path.join(__dirname, '..', 'deployed_contracts.json');
+  fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
+
+  console.log("Contracts ABI and addresses saved to:", dataPath);
 }
 
-module.exports = deploy;
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

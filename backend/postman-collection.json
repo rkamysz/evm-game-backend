@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "75218de6-794b-40b8-ab88-0b785dd326a4",
+		"name": "evm-game-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8044281"
+	},
+	"item": [
+		{
+			"name": "list players",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/v1/players",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add player",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"playerAddress\": \"0x70997970C51812dc3A010C7d01b50e0d17dc79C8\",\n    \"score\": 1234\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/players",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hardhat: List ABIs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/contracts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hardhat: List Accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
