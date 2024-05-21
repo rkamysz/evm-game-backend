@@ -18,6 +18,13 @@ const deploy = async (contractName) => {
   const abi = JSON.parse(abiFile).abi;
 
   console.log(`${contractName} contract deployed to:`, contract.address);
+  // test
+  try {
+    const players = await contract.getPlayers();
+    console.log('Players from getPlayers():', players);
+  } catch (error) {
+    console.error('Error calling getPlayers() directly:', error);
+  }
 
   return {
     abi,
