@@ -7,23 +7,44 @@ services:
       - INFURA_PROJECT_ID=${INFURA_PROJECT_ID}
       - PRIVATE_KEY=${PRIVATE_KEY}
       - NETWORK=${NETWORK}
+      - NETWORK_URL=${NETWORK_URL}
+      - CHAIN_ID=${CHAIN_ID}
+      - WS_PORT=${WS_PORT}
+      - WS_HOST=${WS_HOST}
     volumes:
       - ./hardhat:/app
-    depends_on:
-      - backend
+    ports:
+      - "${WS_PORT}:${WS_PORT}"
+      - "8545:8545"
     command: >
-      /bin/sh -c "sleep 10 && npm install && npm run deploy"
+      /bin/sh -c "npx hardhat node & sleep 10 && npx hardhat run scripts/main.js"
+    networks:
+      - evm-network
 
   backend:
     image: node:16
+    depends_on:
+      - hardhat
     environment:
       - INFURA_PROJECT_ID=${INFURA_PROJECT_ID}
       - PRIVATE_KEY=${PRIVATE_KEY}
-      - PORT=${PORT}
+      - HTTP_PORT=${HTTP_PORT}
+      - WS_PORT=${WS_PORT}
+      - WS_HOST=${WS_HOST}
       - NETWORK=${NETWORK}
+      - NETWORK_URL=${NETWORK_URL}
+      - CHAIN_ID=${CHAIN_ID}
+      - CONTRACT_ADDRESS=${CONTRACT_ADDRESS}
     ports:
-      - "${PORT}:${PORT}"
+      - "${HTTP_PORT}:${HTTP_PORT}"
     volumes:
       - .:/app
+      - ./wait-for-it.sh:/wait-for-it.sh
     working_dir: /app
-    command: sh -c "npm install && npm run build && npm run start"
+    command: sh -c "./wait-for-it.sh hardhat:8545 -- npm install && npm run build && npm run start"
+    networks:
+      - evm-network
+
+networks:
+  evm-network:
+    driver: bridge

@@ -1,7 +1,6 @@
-const WebSocket = require('ws');
-const fs = require('fs');
+const { ethers, network } = require('hardhat');
 
-async function main() {
+const deploy = async () => {
   const [deployer] = await ethers.getSigners();
 
   console.log('Deploying contracts with the account:', deployer.address);
@@ -11,29 +10,11 @@ async function main() {
 
   console.log('Leaderboard contract deployed to:', leaderboard.address);
 
-  const contractData = {
+  return {
     abi: Leaderboard.interface.format(ethers.utils.FormatTypes.json),
     address: leaderboard.address
   };
-
-  const ws = new WebSocket('ws://backend:3000');
-
-  ws.on('open', function open() {
-    ws.send(JSON.stringify(contractData));
-  });
-
-  ws.on('close', function close() {
-    console.log('Disconnected from backend');
-  });
-
-  ws.on('error', function error(err) {
-    console.error('WebSocket error:', err);
-  });
+  
 }
 
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+module.exports = deploy;

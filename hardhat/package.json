@@ -4,7 +4,8 @@
   "description": "A project to deploy and interact with smart contracts using Hardhat.",
   "main": "index.js",
   "scripts": {
-    "deploy": "npx hardhat run scripts/deploy.js --network rinkeby"
+    "deploy": "npx hardhat run scripts/deploy.js",
+    "main": "npx hardhat run scripts/main.js"
   },
   "dependencies": {
     "ethers": "^5.4.0",

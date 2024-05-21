@@ -28,6 +28,7 @@
     "dotenv": "^16.4.5",
     "ethers": "^6.12.1",
     "express": "^4.19.2",
+    "fs": "^0.0.1-security",
     "inversify": "^6.0.2",
     "reflect-metadata": "^0.2.2",
     "ts-node": "^10.9.2",

@@ -9,7 +9,7 @@ import {
   PlayersController,
 } from "../features";
 import { Config } from "./config";
-import { LeaderboardContract, initializeContract } from "../web3";
+import { LeaderboardContract, ContractProvider } from "../web3";
 
 /**
  * @class Dependencies
@@ -29,7 +29,10 @@ export class Dependencies implements Soap.Dependencies<Container> {
    * @returns {Promise<void>} A promise that resolves when the configuration is complete.
    */
   async configure(): Promise<void> {
-    const contract = await initializeContract<LeaderboardContract>(this.config);
+    const contractProvider = new ContractProvider<LeaderboardContract>(
+      this.config
+    );
+    const contract = await contractProvider.fetch();
     this.container
       .bind<PlayerRepository>(PlayerRepository.Token)
       .toConstantValue(
