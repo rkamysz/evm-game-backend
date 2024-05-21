@@ -18,6 +18,7 @@ describe("ContractProvider", () => {
       abiPath: "path/to/abis",
       infuraProjectId: "mockInfuraProjectId",
       contractAddress: "mockContractAddress",
+      contractName: "mockContractName",
       contractProvider: "local",
       chainId: 1337,
     },

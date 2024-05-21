@@ -1,18 +1,27 @@
 const { ethers, network } = require('hardhat');
+const fs = require('fs');
+const path = require('path');
 
-const deploy = async () => {
+const deploy = async (contractName) => {
+  const contractLC = contractName.toLowerCase();
   const [deployer] = await ethers.getSigners();
 
   console.log('Deploying contracts with the account:', deployer.address);
 
-  const Leaderboard = await ethers.getContractFactory('Leaderboard');
-  const leaderboard = await Leaderboard.deploy();
+  const Contract = await ethers.getContractFactory(contractName);
+  const contract = await Contract.deploy();
 
-  console.log('Leaderboard contract deployed to:', leaderboard.address);
+  await contract.deployed();
+
+  const abiPath = path.join(__dirname, `../artifacts/contracts/${contractLC}.sol/${contractName}.json`);
+  const abiFile = fs.readFileSync(abiPath, 'utf8');
+  const abi = JSON.parse(abiFile).abi;
+
+  console.log(`${contractName} contract deployed to:`, contract.address);
 
   return {
-    abi: Leaderboard.interface.format(ethers.utils.FormatTypes.json),
-    address: leaderboard.address
+    abi,
+    address: contract.address
   };
   
 }

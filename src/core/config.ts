@@ -9,6 +9,7 @@ export type Web3Config = {
   contractProvider: string | "ws" | "local";
   infuraProjectId?: string;
   contractAddress?: string;
+  contractName: string;
 };
 
 export class Config implements Soap.Config {
@@ -23,6 +24,7 @@ export class Config implements Soap.Config {
     const chainId = vars.getNumberEnv("CHAIN_ID");
     const infuraProjectId = vars.getStringEnv("INFURA_PROJECT_ID");
     const contractAddress = vars.getStringEnv("CONTRACT_ADDRESS");
+    const contractName = vars.getStringEnv("CONTRACT_NAME");
     const contractProvider = vars.getStringEnv("CONTRACT_PROVIDER");
     const abiPath = vars.getStringEnv("ABI_PATH");
 
@@ -41,6 +43,7 @@ export class Config implements Soap.Config {
       walletPrivateKey,
       contractAddress,
       contractProvider,
+      contractName,
     });
   }
 

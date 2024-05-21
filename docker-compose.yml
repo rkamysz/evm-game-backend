@@ -4,6 +4,7 @@ services:
   hardhat:
     build: ./hardhat
     environment:
+      - CONTRACT_NAME=${CONTRACT_NAME}
       - INFURA_PROJECT_ID=${INFURA_PROJECT_ID}
       - PRIVATE_KEY=${PRIVATE_KEY}
       - NETWORK=${NETWORK}

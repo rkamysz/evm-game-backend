@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 const deploy = require('./deploy');
 
 async function main() {
-  const contractData = await deploy();
+  const contractData = await deploy(process.env.CONTRACT_NAME);
   const wss = new WebSocket.Server({ port: process.env.WS_PORT || 3001 });
 
   wss.on('connection', function connection(ws) {

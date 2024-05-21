@@ -30,6 +30,7 @@ describe("Config", () => {
         walletPrivateKey: "your_private_key",
         contractAddress: "your_contract_address",
         contractProvider: "local",
+        contractName: "Leaderboard",
       });
     });
 
